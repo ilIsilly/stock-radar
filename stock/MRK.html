@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MRK Merck &amp; Co., Inc. 주가·기술적 지표 | Stock Radar</title>
-<meta name="description" content="MRK(Merck &amp; Co., Inc.) 최근 3개월 일봉 차트와 RSI·MACD·볼린저밴드·이동평균·거래량 지표, 매수 신호 상태. 기준 2026-10-14.">
+<meta name="description" content="MRK(Merck &amp; Co., Inc.) 최근 3개월 일봉 차트와 RSI·MACD·볼린저밴드·이동평균·거래량 지표, 신호 상태. 기준 2026-10-14.">
 <style>
 :root{--blue:#0052FF;--blue-tint:#EAF0FF;--ground:#F7F8FA;--card:#FFFFFF;--hair:#F0F1F3;
 --ink:#0A0B0D;--slate:#5B616E;--steel:#8A919E;--fog:#C3C7CF;--border:#E3E6EA;
@@ -42,6 +42,9 @@ a.ticker{color:var(--blue);text-decoration:none}a.ticker:hover{text-decoration:u
 .b-buy{background:var(--gain-tint);color:var(--gain)}
 .b-wait{background:var(--amber-tint);color:var(--amber)}
 .b-none{background:var(--hair);color:var(--slate)}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;background:var(--fog)}
+.dot.d-buy{background:var(--gain)}
+.dot.d-weak{background:transparent;box-shadow:inset 0 0 0 2px var(--gain)}
 .req{color:var(--blue)}
 .callout{background:var(--ground);border:1px solid var(--border);border-radius:12px;padding:12px 14px;font-size:12.5px;font-weight:500;color:var(--ink);display:flex;gap:8px;margin-top:24px}
 .notes{margin-top:16px;color:var(--slate);font-size:13px}
@@ -88,7 +91,7 @@ a.ticker{color:var(--blue);text-decoration:none}a.ticker:hover{text-decoration:u
 <p class="meta">Merck &amp; Co., Inc. · Health Care · 시총 27위 ($363.6B)</p>
 <p class="meta">기준 거래일 2026-10-14 (미국 동부)</p></div>
 <div class="price"><div class="value">$147.37</div>
-<div class="up">+3.80%</div><div><span class="badge b-none">대기</span></div></div>
+<div class="up">+3.80%</div><div><span class="dot d-none" role="img" aria-label="꺼짐" title="꺼짐"></span></div></div>
 </div>
 <section data-stock-history data-symbol="MRK" data-source-id="stock-history-data" aria-label="MRK 최근 3개월 주가">
   <div class="history-heading"><h2>최근 3개월 주가</h2><span class="history-interval">일봉</span></div>
@@ -107,10 +110,10 @@ a.ticker{color:var(--blue);text-decoration:none}a.ticker:hover{text-decoration:u
   </div>
 </section>
 <section class="card"><h2>지표</h2><dl class="grid"><div><dt>RSI(14)</dt><dd>55.0</dd></div><div><dt>거래량 배수(20)</dt><dd>0.99x</dd></div><div><dt>MACD</dt><dd>-0.060</dd></div><div><dt>시그널</dt><dd>+0.164</dd></div><div><dt>히스토그램</dt><dd>-0.224</dd></div><div><dt>SMA 5</dt><dd>144.56</dd></div><div><dt>SMA 20</dt><dd>145.89</dd></div><div><dt>SMA 50</dt><dd>143.96</dd></div><div><dt>SMA 200</dt><dd>123.16</dd></div><div><dt>볼린저 상단</dt><dd>151.89</dd></div><div><dt>볼린저 중단</dt><dd>145.89</dd></div><div><dt>볼린저 하단</dt><dd>139.88</dd></div></dl></section>
-<section class="card"><h2>신호 조건 (최근 3봉)</h2><ul class="signals"><li><span>골든크로스</span><span class="badge b-none">미발생</span></li><li><span><span class="req">RSI 반등</span> · 필수</span><span class="badge b-none">미발생</span></li><li><span><span class="req">MACD 상향</span> · 필수</span><span class="badge b-none">미발생</span></li><li><span>볼린저 복귀</span><span class="badge b-none">미발생</span></li><li><span><span class="req">거래량 급증</span> · 필수</span><span class="badge b-none">미발생</span></li></ul>
-<p class="meta">필수 조건이 모두 발생하면 신호입니다. 판정 기준은 <a href="../">스캔 페이지</a> 하단 참고.</p></section>
+<section class="card"><h2>신호 조건 (최근 3봉)</h2><ul class="signals"><li><span>골든크로스</span><span class="badge b-none">꺼짐</span></li><li><span><span class="req">RSI 반등</span> · 필수</span><span class="badge b-none">꺼짐</span></li><li><span><span class="req">MACD 상향</span> · 필수</span><span class="badge b-none">꺼짐</span></li><li><span>볼린저 복귀</span><span class="badge b-none">꺼짐</span></li><li><span><span class="req">거래량 급증</span> · 필수</span><span class="badge b-none">꺼짐</span></li></ul>
+<p class="meta">필수 조건이 모두 발생하면 신호입니다. 신호 기준은 <a href="../">스캔 페이지</a> 하단 참고.</p></section>
 </div>
-<div class="callout"><span>⚠️</span><span>기술적 지표 기반 참고 정보이며 투자 권유가 아닙니다. 데이터 지연·오류가 있을 수 있고, 투자 판단은 본인 책임입니다.</span></div>
+<div class="callout"><span>⚠️</span><span>지표 조건이 켜졌는지·꺼졌는지만 보여주며, 매매 판단이나 권유가 아닙니다. 데이터 지연·오류가 있을 수 있습니다.</span></div>
 <a class="back" href="../">← 전체 스캔 표</a>
 </main>
 
