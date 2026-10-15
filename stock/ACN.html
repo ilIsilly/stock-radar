@@ -62,6 +62,11 @@ a.ticker{color:var(--blue);text-decoration:none}a.ticker:hover{text-decoration:u
 .nav-link.active{color:var(--blue);background:var(--blue-tint)}
 
 .wrap{max-width:592px}
+.stock-nav{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.stock-nav a,.stock-nav span{padding:10px 8px;font-weight:600}
+.stock-nav a{color:var(--blue);text-decoration:none}
+.stock-nav [aria-disabled]{color:var(--steel)}
+.stock-nav-hint{margin:0 0 16px;color:var(--steel);font-size:12px}
 .head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}
 .price{text-align:right}
 .price .value{color:var(--ink);font-size:24px;font-weight:600;line-height:1.2;font-variant-numeric:tabular-nums}
@@ -84,7 +89,8 @@ a.ticker{color:var(--blue);text-decoration:none}a.ticker:hover{text-decoration:u
 </head>
 <body>
 <nav class="nav"><div class="nav-in"><a class="brand" href="../">Stock Radar</a><div class="nav-links"><a class="nav-link active" aria-current="true" href="../">지표 스캔</a><a class="nav-link" href="../dividend.html">배당 계산기</a></div></div></nav>
-<main class="wrap">
+<main class="wrap" data-stock-navigation>
+<nav class="stock-nav" aria-label="스캔 순서로 종목 이동"><a rel="prev" data-stock-prev href="VLO.html">← 이전 VLO</a><span>94 / 97</span><a rel="next" data-stock-next href="GLW.html">다음 → GLW</a></nav><p class="stock-nav-hint">스캔 표 순서 · 왼쪽으로 밀면 이전, 오른쪽으로 밀면 다음 종목</p>
 <div class="stack">
 <div class="head">
 <div><h1>ACN</h1>
@@ -119,5 +125,6 @@ a.ticker{color:var(--blue);text-decoration:none}a.ticker:hover{text-decoration:u
 
 <script type="application/json" id="stock-history-data">{"symbol": "ACN", "currency": "USD", "bars": [{"date": "2026-10-02", "open": 209.34064867232237, "high": 211.61241755805958, "low": 196.78139682339318, "close": 197.31709269349554, "volume": 10032300, "ma5": null, "ma20": null}, {"date": "2026-10-05", "open": 194.73779329553705, "high": 198.15041924539037, "low": 192.22792894677914, "close": 193.49774114151217, "volume": 6993900, "ma5": null, "ma20": null}, {"date": "2026-10-06", "open": 193.87470670293405, "high": 194.59890805978048, "low": 191.0473968741706, "close": 191.8608632157861, "volume": 6147800, "ma5": null, "ma20": null}, {"date": "2026-10-07", "open": 193.44813602788008, "high": 196.62266651471268, "low": 192.50569941829227, "close": 195.0750838484665, "volume": 5231800, "ma5": null, "ma20": null}, {"date": "2026-10-08", "open": 196.1564056938109, "high": 207.396240234375, "low": 191.6823029715371, "close": 206.70181405559214, "volume": 12091900, "ma5": 196.8905189909705, "ma20": null}, {"date": "2026-10-09", "open": 206.92006444568895, "high": 207.396240234375, "low": 202.47572176412334, "close": 207.396240234375, "volume": 4876700, "ma5": 198.9063484991464, "ma20": null}, {"date": "2026-10-12", "open": 209.14224672815547, "high": 214.93576685223118, "low": 208.3287652360649, "close": 213.16000366210938, "volume": 6389600, "ma5": 202.83880100326581, "ma20": null}, {"date": "2026-10-13", "open": 215.74000549316406, "high": 218.5800018310547, "low": 212.67999267578125, "close": 213.55999755859375, "volume": 6309100, "ma5": 207.17862787182736, "ma20": null}, {"date": "2026-10-14", "open": 216.2899932861328, "high": 218.8800048828125, "low": 212.7100067138672, "close": 214.9600067138672, "volume": 6741500, "ma5": 211.1556124449075, "ma20": null}]}</script>
 <script src="../assets/stock-history.js"></script>
+<script src="../assets/stock-navigation.js"></script>
 </body>
 </html>
