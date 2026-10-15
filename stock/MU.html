@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MU Micron Technology, Inc. 주가·기술적 지표 | Stock Radar</title>
+<meta name="description" content="MU(Micron Technology, Inc.) 최근 3개월 일봉 차트와 RSI·MACD·볼린저밴드·이동평균·거래량 지표, 매수 신호 상태. 기준 2026-10-14.">
+<style>
+:root{--blue:#0052FF;--blue-tint:#EAF0FF;--ground:#F7F8FA;--card:#FFFFFF;--hair:#F0F1F3;
+--ink:#0A0B0D;--slate:#5B616E;--steel:#8A919E;--fog:#C3C7CF;--border:#E3E6EA;
+--gain:#05B169;--gain-tint:#E6F9EF;--loss:#DF1B41;--loss-tint:#FCE9EC;--amber:#F4A81E;--amber-tint:#FEF6E7}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--slate);font:400 14px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Hiragino Sans",Arial,sans-serif}
+.nav{background:var(--card);border-bottom:1px solid var(--border)}
+.nav-in{max-width:1200px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:8px}
+.brand{color:var(--ink);font-weight:600;font-size:17px;letter-spacing:-0.01em;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:24px 16px 40px}
+h1{color:var(--ink);font-size:22px;font-weight:600;line-height:1.3;letter-spacing:-0.01em;margin:0 0 4px}
+.meta{color:var(--steel);font-size:12px;font-weight:500;line-height:1.5;margin:0}
+.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0 24px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 1px 2px rgba(10,11,13,0.04);padding:16px}
+.card .label{color:var(--steel);font-size:12px;font-weight:500;line-height:1.5}
+.card .value{color:var(--ink);font-size:24px;font-weight:600;line-height:1.2;font-variant-numeric:tabular-nums}
+.table-card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 1px 2px rgba(10,11,13,0.04);overflow:hidden}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:980px}
+th{position:sticky;top:0;background:var(--ground);color:var(--slate);font-size:12px;font-weight:600;line-height:1.4;text-transform:uppercase;letter-spacing:0.02em;text-align:right;padding:10px 12px;white-space:nowrap;border-bottom:1px solid var(--border)}
+td{padding:10px 12px;border-bottom:1px solid var(--hair);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--ink)}
+tbody tr:nth-child(even) td{background:#FAFBFC}
+tbody tr:hover td{background:var(--blue-tint)}
+th.l,td.l{text-align:left}
+th.c,td.c{text-align:center}
+.sticky{position:sticky;left:0;z-index:1;background:var(--card)}
+th.sticky{background:var(--ground);z-index:2}
+.ticker{font-weight:600;color:var(--ink)}
+a.ticker{color:var(--blue);text-decoration:none}a.ticker:hover{text-decoration:underline}
+.picker{display:flex;align-items:center;gap:8px;margin:0 0 12px}
+.picker label{color:var(--slate);font-size:12px;font-weight:600}
+.picker select{min-height:40px;min-width:220px;max-width:100%;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--ink);font:inherit}
+.picker select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,82,255,0.12)}
+.name{display:block;color:var(--steel);font-size:12px;font-weight:500;max-width:180px;overflow:hidden;text-overflow:ellipsis}
+.up{color:var(--gain)}.down{color:var(--loss)}.muted{color:var(--fog)}
+.badge{display:inline-block;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600;line-height:1.2}
+.b-buy{background:var(--gain-tint);color:var(--gain)}
+.b-wait{background:var(--amber-tint);color:var(--amber)}
+.b-none{background:var(--hair);color:var(--slate)}
+.req{color:var(--blue)}
+.callout{background:var(--ground);border:1px solid var(--border);border-radius:12px;padding:12px 14px;font-size:12.5px;font-weight:500;color:var(--ink);display:flex;gap:8px;margin-top:24px}
+.notes{margin-top:16px;color:var(--slate);font-size:13px}
+.notes ul{margin:4px 0 0;padding-left:18px}
+@media (max-width:480px){.summary{gap:8px;margin:16px 0 20px}.card{padding:12px}.card .value{font-size:20px}
+.name{max-width:120px}th,td{padding:10px 8px}}
+
+.wrap{max-width:592px}
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}
+.price{text-align:right}
+.price .value{color:var(--ink);font-size:24px;font-weight:600;line-height:1.2;font-variant-numeric:tabular-nums}
+.stack{display:grid;gap:14px}
+.card h2{color:var(--ink);font-size:17px;font-weight:600;line-height:1.3;margin:0 0 12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin:0}
+.grid div{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid var(--hair);padding:6px 0}
+.grid dt{color:var(--slate);font-size:13px}
+.grid dd{margin:0;color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+.signals{list-style:none;margin:0;padding:0}
+.signals li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--hair)}
+.signals li:last-child{border-bottom:0}
+.back{display:inline-block;margin-top:20px;color:var(--blue);text-decoration:none;font-weight:600}
+.back:hover{text-decoration:underline}
+[data-stock-history] svg:focus{outline:none}
+[data-stock-history] svg:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:4px}
+@media (max-width:480px){.grid{gap:0 12px}.grid dt,.grid dd{font-size:12.5px}}
+</style>
+<link rel="stylesheet" href="../assets/stock-history.css">
+</head>
+<body>
+<nav class="nav"><div class="nav-in"><a class="brand" href="../">Stock Radar</a></div></nav>
+<main class="wrap">
+<div class="stack">
+<div class="head">
+<div><h1>MU</h1>
+<p class="meta">Micron Technology, Inc. · Information Technology · 시총 11위 ($1.03T)</p>
+<p class="meta">기준 거래일 2026-10-14 (미국 동부)</p></div>
+<div class="price"><div class="value">$914.13</div>
+<div class="down">-4.08%</div><div><span class="badge b-none">대기</span></div></div>
+</div>
+<section data-stock-history data-symbol="MU" data-source-id="stock-history-data" aria-label="MU 최근 3개월 주가">
+  <div class="history-heading"><h2>최근 3개월 주가</h2><span class="history-interval">일봉</span></div>
+  <p class="history-message" role="status">주가 데이터를 불러오는 중이에요.</p>
+  <noscript>차트를 보려면 JavaScript를 활성화해 주세요.</noscript>
+  <div class="history-content" hidden>
+    <p class="history-period"></p>
+    <div class="history-legend">
+      <button type="button" data-ma="5" aria-pressed="true"><i></i>MA5</button>
+      <button type="button" data-ma="20" aria-pressed="true"><i></i>MA20</button>
+      <span class="history-direction">상승 <b class="gain">↑</b> · 하락 <b class="loss">↓</b></span>
+    </div>
+    <div class="history-selection"><b class="history-date"></b><span>종가 <strong class="history-close"></strong></span></div>
+    <svg role="slider" tabindex="0" aria-label="주가 차트. 좌우 방향키로 날짜 선택" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0"></svg>
+    <div class="history-ohlc"><span>시가 <b data-field="open"></b></span><span>고가 <b data-field="high"></b></span><span>저가 <b data-field="low"></b></span><span>거래량 <b data-field="volume"></b></span></div>
+  </div>
+</section>
+<section class="card"><h2>지표</h2><dl class="grid"><div><dt>RSI(14)</dt><dd>36.3</dd></div><div><dt>거래량 배수(20)</dt><dd>1.04x</dd></div><div><dt>MACD</dt><dd>-2.199</dd></div><div><dt>시그널</dt><dd>+17.446</dd></div><div><dt>히스토그램</dt><dd>-19.645</dd></div><div><dt>SMA 5</dt><dd>984.11</dd></div><div><dt>SMA 20</dt><dd>1,042.01</dd></div><div><dt>SMA 50</dt><dd>982.26</dd></div><div><dt>SMA 200</dt><dd>711.51</dd></div><div><dt>볼린저 상단</dt><dd>1,138.91</dd></div><div><dt>볼린저 중단</dt><dd>1,042.01</dd></div><div><dt>볼린저 하단</dt><dd>945.10</dd></div></dl></section>
+<section class="card"><h2>신호 조건 (최근 3봉)</h2><ul class="signals"><li><span>골든크로스</span><span class="badge b-none">미발생</span></li><li><span><span class="req">RSI 반등</span> · 필수</span><span class="badge b-none">미발생</span></li><li><span><span class="req">MACD 상향</span> · 필수</span><span class="badge b-none">미발생</span></li><li><span>볼린저 복귀</span><span class="badge b-none">미발생</span></li><li><span><span class="req">거래량 급증</span> · 필수</span><span class="badge b-none">미발생</span></li></ul>
+<p class="meta">필수 조건이 모두 발생하면 신호입니다. 판정 기준은 <a href="../">스캔 페이지</a> 하단 참고.</p></section>
+</div>
+<div class="callout"><span>⚠️</span><span>기술적 지표 기반 참고 정보이며 투자 권유가 아닙니다. 데이터 지연·오류가 있을 수 있고, 투자 판단은 본인 책임입니다.</span></div>
+<a class="back" href="../">← 전체 스캔 표</a>
+</main>
+<script type="application/json" id="stock-history-data">{"symbol": "MU", "currency": "USD", "bars": [{"date": "2026-07-14", "open": 988.22446909063, "high": 994.6434417242501, "low": 949.9205001604882, "close": 982.9652870631035, "volume": 30835200, "ma5": 967.8196727713273, "ma20": 1050.4191023283115}, {"date": "2026-07-15", "open": 975.6564398376362, "high": 978.2460591151727, "low": 873.4925266515528, "close": 904.1377278439757, "volume": 54779200, "ma5": 958.9170822431113, "ma20": 1041.2434163546163}, {"date": "2026-07-16", "open": 866.6336208172313, "high": 887.5703280484432, "low": 840.3777434413769, "close": 853.0657489286028, "volume": 46718000, "ma5": 931.2334388594543, "ma20": 1032.8745827612422}, {"date": "2026-07-17", "open": 822.4005923808422, "high": 903.8177708775064, "low": 803.8734790502672, "close": 848.8164177271555, "volume": 63346300, "ma5": 905.1675462305029, "ma20": 1023.1721333809062}, {"date": "2026-07-20", "open": 885.4306501620526, "high": 900.8582147068292, "low": 858.7648641568306, "close": 865.3238294055719, "volume": 37705200, "ma5": 890.8618021936818, "ma20": 1009.75646837153}, {"date": "2026-07-21", "open": 925.2043584743127, "high": 982.7253345946394, "low": 916.4257718667271, "close": 970.6672348499075, "volume": 49369000, "ma5": 888.4021917510427, "ma20": 997.739673771325}, {"date": "2026-07-22", "open": 938.1023528842204, "high": 982.4653657452861, "low": 935.9126950711584, "close": 959.3289925105678, "volume": 31588600, "ma5": 899.4404446843612, "ma20": 993.1339838619439}, {"date": "2026-07-23", "open": 974.9765541684708, "high": 1011.6108029842571, "low": 964.2482622162873, "close": 990.0541982009959, "volume": 40196300, "ma5": 926.8381345388398, "ma20": 990.2275046646762}, {"date": "2026-07-24", "open": 958.8791121449733, "high": 966.9878212738381, "low": 903.8577426137333, "close": 920.805087492851, "volume": 40803100, "ma5": 941.2358684919789, "ma20": 975.6086354718755}, {"date": "2026-07-27", "open": 932.3032778026496, "high": 934.8528643184078, "low": 854.655464544953, "close": 900.0583528034318, "volume": 47591200, "ma5": 948.1827731715508, "ma20": 964.0126669721998}, {"date": "2026-07-28", "open": 839.4778606590851, "high": 848.2264837208884, "low": 788.9658522041971, "close": 820.4009071095728, "volume": 61039300, "ma5": 918.129507623484, "ma20": 947.7865281631623}, {"date": "2026-07-29", "open": 832.8689154836724, "high": 841.6675184721471, "low": 737.7638888641476, "close": 738.8837077340143, "volume": 69846000, "ma5": 874.0404506681731, "ma20": 927.0341669178955}, {"date": "2026-07-30", "open": 793.0152026734071, "high": 882.3611259475881, "low": 788.8758395157473, "close": 874.5223328329697, "volume": 63075300, "ma5": 850.9340775945678, "ma20": 919.1623376209773}, {"date": "2026-07-31", "open": 919.5053042716363, "high": 930.7335175416371, "low": 817.8712759491524, "close": 822.9005136986596, "volume": 54538600, "ma5": 831.3531628357296, "ma20": 911.544539387252}, {"date": "2026-08-03", "open": 786.2362403115394, "high": 836.4883409426257, "low": 769.9787892920316, "close": 829.3694662589511, "volume": 42607100, "ma5": 817.2153855268335, "ma20": 903.783260928138}, {"date": "2026-08-04", "open": 866.6836007439027, "high": 902.2879823527206, "low": 858.3649026923562, "close": 892.5295084648382, "volume": 37478600, "ma5": 831.6411057978864, "ma20": 901.498119485935}, {"date": "2026-08-05", "open": 885.1606731222548, "high": 928.8337921237106, "low": 881.0613427263733, "close": 893.0494461635446, "volume": 34720300, "ma5": 862.4742534837926, "ma20": 898.7180577698595}, {"date": "2026-08-06", "open": 842.9773098838065, "high": 913.186291491359, "low": 826.8698596698644, "close": 881.3312587406197, "volume": 35784100, "ma5": 863.8360386653227, "ma20": 893.2104224145462}, {"date": "2026-08-07", "open": 903.4577811492588, "high": 904.6576045171307, "low": 846.8867287634467, "close": 877.4319090769753, "volume": 34568500, "ma5": 874.7423177409858, "ma20": 888.1247238247994}, {"date": "2026-08-10", "open": 863.534072031433, "high": 894.8491507025767, "low": 854.2655722964747, "close": 860.8645092814429, "volume": 27818600, "ma5": 881.0413263454841, "ma20": 884.3253218093876}, {"date": "2026-08-11", "open": 871.6627975411869, "high": 878.8616767228667, "low": 844.487082027703, "close": 868.3833454295919, "volume": 29438300, "ma5": 876.2120937384349, "ma20": 878.5962247277121}, {"date": "2026-08-12", "open": 912.7963382173292, "high": 935.6527262218052, "low": 899.3984224896042, "close": 911.1465734583114, "volume": 36804900, "ma5": 879.8315191973883, "ma20": 878.9466670084288}, {"date": "2026-08-13", "open": 912.7463582906578, "high": 977.8460976506982, "low": 906.3573492028199, "close": 949.6805476920242, "volume": 36704700, "ma5": 893.5013769876692, "ma20": 883.7774069465999}, {"date": "2026-08-14", "open": 979.1658972528021, "high": 983.8451534645061, "low": 956.0495403989729, "close": 971.5070684895318, "volume": 27881100, "ma5": 912.3164088701803, "ma20": 889.9119394847187}, {"date": "2026-08-17", "open": 999.3926942435148, "high": 1035.966954942185, "low": 995.1033913058407, "close": 1011.590786603368, "volume": 33430500, "ma5": 942.4616643345655, "ma20": 897.2252873446084}, {"date": "2026-08-18", "open": 956.9493621557132, "high": 978.515975129419, "low": 926.4941945306343, "close": 940.6119676637517, "volume": 37306000, "ma5": 956.9073887813975, "ma20": 895.7225239853008}, {"date": "2026-08-19", "open": 959.2090162763358, "high": 959.8489302092743, "low": 915.0359759570626, "close": 936.9625176334645, "volume": 26901900, "ma5": 962.0705776164281, "ma20": 894.6042002414455}, {"date": "2026-08-20", "open": 934.8628725088523, "high": 977.1262402453059, "low": 928.9238048121604, "close": 974.1766922650734, "volume": 25212200, "ma5": 966.9698065310379, "ma20": 893.8103249446494}, {"date": "2026-08-21", "open": 989.5242523118449, "high": 989.8042375420872, "low": 958.1092137873582, "close": 966.627892571142, "volume": 21823400, "ma5": 965.9939713473599, "ma20": 896.1014651985639}, {"date": "2026-08-24", "open": 934.6329282308328, "high": 936.3026483451883, "low": 887.4703071695488, "close": 910.286723437798, "volume": 30012600, "ma5": 945.7331587142459, "ma20": 896.6128837302822}, {"date": "2026-08-25", "open": 928.8337921237106, "high": 946.5210107891098, "low": 916.1557948269293, "close": 932.8231544758047, "volume": 19163200, "ma5": 944.1753960766564, "ma20": 902.2339960985939}, {"date": "2026-08-26", "open": 925.5943117483425, "high": 945.6011726514804, "low": 924.4544764975867, "close": 938.2523536897862, "volume": 18721700, "ma5": 944.4333632879209, "ma20": 912.2024283963825}, {"date": "2026-08-27", "open": 966.8578368491615, "high": 968.5575815348507, "low": 906.7473024768498, "close": 935.2428175924376, "volume": 28838500, "ma5": 936.6465883533936, "ma20": 915.2384526343558}, {"date": "2026-08-28", "open": 919.1453145433887, "high": 946.6509952137865, "low": 908.9469684803563, "close": 932.7131864320172, "volume": 22890100, "ma5": 929.8636471255688, "ma20": 920.7290862710237}, {"date": "2026-08-31", "open": 931.243447049899, "high": 959.8189056379405, "low": 930.6435048531873, "close": 958.5791105338418, "volume": 22569500, "ma5": 939.5221245447776, "ma20": 927.1895684847683}, {"date": "2026-09-01", "open": 940.9819045568923, "high": 969.2874471306875, "low": 922.2448633291871, "close": 933.2931122478398, "volume": 27762200, "ma5": 939.6161160991845, "ma20": 929.2277486739183}, {"date": "2026-09-02", "open": 930.6835376149656, "high": 957.849244938005, "low": 927.0140712037894, "close": 955.9295641647408, "volume": 21440500, "ma5": 943.1515581941754, "ma20": 932.371754573978}, {"date": "2026-09-03", "open": 956.7593896139205, "high": 959.6089777408101, "low": 918.7354059140212, "close": 958.0091929084639, "volume": 24175900, "ma5": 947.7048332573806, "ma20": 936.2056512823704}, {"date": "2026-09-04", "open": 971.187172548614, "high": 1017.609858798065, "low": 968.8475139299862, "close": 1016.4300518110824, "volume": 35249500, "ma5": 964.4482063331938, "ma20": 943.1555584190758}, {"date": "2026-09-08", "open": 1036.236931981983, "high": 1040.906118977691, "low": 997.4630052798061, "close": 1000.1026044840139, "volume": 26604900, "ma5": 972.7529051232281, "ma20": 950.1174631792043}, {"date": "2026-09-09", "open": 998.6528204572334, "high": 1042.2359877957908, "low": 992.133826944719, "close": 1027.6082851544118, "volume": 23812000, "ma5": 991.6159397045425, "ma20": 958.0787101654453}, {"date": "2026-09-10", "open": 996.8431077277567, "high": 998.8427929990261, "low": 973.3468057903422, "close": 977.256163644431, "volume": 26230400, "ma5": 995.8812596004806, "ma20": 961.3841896747512}, {"date": "2026-09-11", "open": 993.0437179174553, "high": 993.8335716304082, "low": 967.2277737423021, "close": 975.1065385931474, "volume": 21740300, "ma5": 999.3007287374173, "ma20": 962.6554892198074}, {"date": "2026-09-14", "open": 905.8874524563363, "high": 932.0633253341856, "low": 902.4579385136242, "close": 923.8846198977602, "volume": 27141900, "ma5": 980.7916423547529, "ma20": 960.2743667902189}, {"date": "2026-09-15", "open": 937.3524709074944, "high": 944.7913025576383, "low": 919.9852092085645, "close": 927.4540044044907, "volume": 20434700, "ma5": 966.2619223388483, "ma20": 956.0675276802749}, {"date": "2026-09-16", "open": 934.0829659607925, "high": 941.0519008644529, "low": 917.4956108099224, "close": 926.4041818421846, "volume": 20213000, "ma5": 946.0211016764027, "ma20": 955.3571383891965}, {"date": "2026-09-17", "open": 954.4197920208443, "high": 986.0448194680126, "low": 953.3499530776489, "close": 977.3461763328809, "volume": 22091600, "ma5": 946.0391042140927, "ma20": 957.3763213241675}, {"date": "2026-09-18", "open": 984.5650108698984, "high": 1016.2800510055166, "low": 977.6761414897946, "close": 1015.640137072578, "volume": 35803500, "ma5": 954.145823909979, "ma20": 959.4494935645428}, {"date": "2026-09-21", "open": 1044.8255460477758, "high": 1064.3224774426517, "low": 1030.5178613984174, "close": 1043.7956788408073, "volume": 28174400, "ma5": 978.1280356985883, "ma20": 963.3078828780259}, {"date": "2026-09-22", "open": 1032.6874418050386, "high": 1097.0773319501313, "low": 1029.8579310845896, "close": 1095.9875376515986, "volume": 29189700, "ma5": 1011.83474234801, "ma20": 972.5929235887158}, {"date": "2026-09-23", "open": 1099.8968344801358, "high": 1105.3260336941173, "low": 1064.0825249741877, "close": 1071.7113291661242, "volume": 21572800, "ma5": 1040.8961718127978, "ma20": 979.5373323232319}, {"date": "2026-09-24", "open": 1049.584806757485, "high": 1080.8699218828465, "low": 1043.8357116025857, "close": 1080.3599923745846, "volume": 22069900, "ma5": 1061.4989350211385, "ma20": 986.6427142574718}, {"date": "2026-09-25", "open": 1095.6575114691332, "high": 1108.5454976885962, "low": 1072.831148035991, "close": 1082.1097169869454, "volume": 20947900, "ma5": 1074.7928510040122, "ma20": 993.9860592271973}, {"date": "2026-09-28", "open": 1075.8106595620056, "high": 1084.6393481473658, "low": 1031.8375999749699, "close": 1053.8141215780431, "volume": 22227200, "ma5": 1076.796539551459, "ma20": 1000.0411059844985}, {"date": "2026-09-29", "open": 1076.5205087769534, "high": 1082.4896620705306, "low": 1057.5335068903394, "close": 1064.9123504233673, "volume": 19723100, "ma5": 1070.581502105813, "ma20": 1005.3577679789748}, {"date": "2026-09-30", "open": 1076.5905661100655, "high": 1083.3294957101548, "low": 1062.1928077467057, "close": 1064.9423749947011, "volume": 31103200, "ma5": 1069.2277112715283, "ma20": 1011.9402311163179}, {"date": "2026-10-01", "open": 1053.914081431386, "high": 1098.7270967091492, "low": 1022.739056400915, "close": 1097.2173245652527, "volume": 45735400, "ma5": 1072.599177709662, "ma20": 1019.0046191363435}, {"date": "2026-10-02", "open": 1107.175718159821, "high": 1107.825640283204, "low": 1071.8413135908008, "close": 1074.720865263473, "volume": 27337500, "ma5": 1071.1214073649676, "ma20": 1024.8402027540938}, {"date": "2026-10-05", "open": 1069.5117241881692, "high": 1074.7108570730281, "low": 1055.393951055052, "close": 1063.7925315535006, "volume": 18261700, "ma5": 1073.1170893600588, "ma20": 1027.208326741215}, {"date": "2026-10-06", "open": 1064.3124692522072, "high": 1074.1410004732018, "low": 1045.0955230875736, "close": 1045.3955246987052, "volume": 21781200, "ma5": 1069.2137242151264, "ma20": 1029.4729727519493}, {"date": "2026-10-07", "open": 1017.2098973335907, "high": 1089.0485662937203, "low": 1011.2608214464541, "close": 1087.828787570511, "volume": 30859500, "ma5": 1073.7910067302885, "ma20": 1032.4839978727543}, {"date": "2026-10-08", "open": 1077.330439896347, "high": 1088.3287088883283, "low": 1031.9375598283127, "close": 1035.676961521498, "volume": 29910700, "ma5": 1061.4829341215377, "ma20": 1035.4050377666076}, {"date": "2026-10-09", "open": 1054.0041551453874, "high": 1054.0041551453874, "low": 1016.8399604404499, "close": 1028.838072068066, "volume": 19918900, "ma5": 1052.3063754824561, "ma20": 1038.0916144403536}, {"date": "2026-10-12", "open": 1002.2922622970759, "high": 1002.5121983846508, "low": 978.3460189685155, "close": 988.8843383789062, "volume": 23983800, "ma5": 1037.3247368475372, "ma20": 1041.341600364411}, {"date": "2026-10-13", "open": 933.9230520539426, "high": 953.4499477068184, "low": 928.8838669557448, "close": 953.0400390625, "volume": 29227200, "ma5": 1018.8536397202963, "ma20": 1042.6209020973115}, {"date": "2026-10-14", "open": 934.5599975585938, "high": 949.4199829101562, "low": 913.5599975585938, "close": 914.1300048828125, "volume": 27127700, "ma5": 984.1138831827566, "ma20": 1042.0071932493427}]}</script>
+<script src="../assets/stock-history.js"></script>
+</body>
+</html>
