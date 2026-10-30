@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>환율 계산기 · Stock Radar</title>
 <meta name="description" content="G10 주요 통화와 원화 환율 계산기. 매일 18시 수집한 ECB 기준환율로 계산합니다.">
+<link rel="canonical" href="https://ilisilly.github.io/stock-radar/exchange.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Stock Radar">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="환율 계산기 · Stock Radar">
+<meta property="og:description" content="G10 주요 통화와 원화 환율 계산기. 매일 18시 수집한 ECB 기준환율로 계산합니다.">
+<meta property="og:url" content="https://ilisilly.github.io/stock-radar/exchange.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="환율 계산기 · Stock Radar">
+<meta name="twitter:description" content="G10 주요 통화와 원화 환율 계산기. 매일 18시 수집한 ECB 기준환율로 계산합니다.">
 <style>
 :root{--blue:#0052FF;--blue-tint:#EAF0FF;--ground:#F7F8FA;--card:#FFFFFF;--hair:#F0F1F3;
 --ink:#0A0B0D;--slate:#5B616E;--steel:#8A919E;--fog:#C3C7CF;--border:#E3E6EA;
@@ -46,6 +56,14 @@ a.ticker{color:var(--blue);text-decoration:none}a.ticker:hover{text-decoration:u
 .dot.d-buy{background:var(--gain)}
 .dot.d-weak{background:transparent;box-shadow:inset 0 0 0 2px var(--gain)}
 .req{color:var(--blue)}
+th button.sort{display:inline-flex;align-items:center;gap:4px;background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;white-space:nowrap}
+th button.sort:hover{color:var(--ink)}
+th button.sort:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:4px}
+.sort-arrow{display:block;flex-shrink:0;color:var(--steel);opacity:0;transition:opacity .15s ease,transform .15s ease}
+th button.sort:hover .sort-arrow,th button.sort:focus-visible .sort-arrow{opacity:.55}
+th[aria-sort] button.sort{color:var(--ink)}
+th[aria-sort] .sort-arrow{opacity:1;color:var(--ink)}
+th[aria-sort=ascending] .sort-arrow{transform:rotate(180deg)}
 .callout{background:var(--ground);border:1px solid var(--border);border-radius:12px;padding:12px 14px;font-size:12.5px;font-weight:500;color:var(--ink);display:flex;gap:8px;margin-top:24px}
 .notes{margin-top:16px;color:var(--slate);font-size:13px}
 .notes ul{margin:4px 0 0;padding-left:18px}
@@ -109,14 +127,14 @@ a.ticker{color:var(--blue);text-decoration:none}a.ticker:hover{text-decoration:u
 <noscript><p>계산하려면 JavaScript를 활성화해 주세요. 아래 환율표는 그대로 확인할 수 있습니다.</p></noscript>
 </section><aside class="card fx-status"><h2>지금 계산에 쓰는 환율</h2><dl>
 <div><dt>환율 기준일</dt><dd>2026.10.29</dd></div>
-<div><dt>마지막 수집 · 한국 시간</dt><dd>2026.10.30 16:14</dd></div>
+<div><dt>마지막 수집 · 한국 시간</dt><dd>2026.10.30 18:00</dd></div>
 <div><dt>수집 일정</dt><dd>매일 오후 6시 · KST</dd></div><div><dt>출처</dt><dd><a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html" target="_blank" rel="noopener noreferrer">유럽중앙은행 ECB ↗</a></dd></div></dl>
 <p class="fx-source-note">일일 참고 환율입니다. 한국 시간 오후 6시에는 보통 직전 영업일 기준환율을 가져옵니다. 주말·휴일에는 기준일과 환율이 같을 수 있습니다.</p>
 </aside></div><div class="fx-heading"><h2>원화 기준 환율</h2><span>통화를 누르면 계산기에 적용돼요 · 엔화는 100엔 기준</span></div>
 <div class="fx-grid"><button type="button" class="fx-rate" data-currency="USD" aria-pressed="false"><span class="fx-code">USD</span><span class="fx-name">미국 달러</span><span class="fx-price">1,337.29 원</span><span class="fx-basis">1 USD 기준</span></button><button type="button" class="fx-rate" data-currency="EUR" aria-pressed="false"><span class="fx-code">EUR</span><span class="fx-name">유로</span><span class="fx-price">1,488.40 원</span><span class="fx-basis">1 EUR 기준</span></button><button type="button" class="fx-rate" data-currency="JPY" aria-pressed="false"><span class="fx-code">JPY</span><span class="fx-name">일본 엔</span><span class="fx-price">846.07 원</span><span class="fx-basis">100 JPY 기준</span></button><button type="button" class="fx-rate" data-currency="GBP" aria-pressed="false"><span class="fx-code">GBP</span><span class="fx-name">영국 파운드</span><span class="fx-price">1,780.85 원</span><span class="fx-basis">1 GBP 기준</span></button><button type="button" class="fx-rate" data-currency="CHF" aria-pressed="false"><span class="fx-code">CHF</span><span class="fx-name">스위스 프랑</span><span class="fx-price">1,613.97 원</span><span class="fx-basis">1 CHF 기준</span></button><button type="button" class="fx-rate" data-currency="CAD" aria-pressed="false"><span class="fx-code">CAD</span><span class="fx-name">캐나다 달러</span><span class="fx-price">955.51 원</span><span class="fx-basis">1 CAD 기준</span></button><button type="button" class="fx-rate" data-currency="AUD" aria-pressed="false"><span class="fx-code">AUD</span><span class="fx-name">호주 달러</span><span class="fx-price">939.53 원</span><span class="fx-basis">1 AUD 기준</span></button><button type="button" class="fx-rate" data-currency="NZD" aria-pressed="false"><span class="fx-code">NZD</span><span class="fx-name">뉴질랜드 달러</span><span class="fx-price">751.07 원</span><span class="fx-basis">1 NZD 기준</span></button><button type="button" class="fx-rate" data-currency="SEK" aria-pressed="false"><span class="fx-code">SEK</span><span class="fx-name">스웨덴 크로나</span><span class="fx-price">135.32 원</span><span class="fx-basis">1 SEK 기준</span></button><button type="button" class="fx-rate" data-currency="NOK" aria-pressed="false"><span class="fx-code">NOK</span><span class="fx-name">노르웨이 크로네</span><span class="fx-price">144.06 원</span><span class="fx-basis">1 NOK 기준</span></button></div>
 <p class="fx-notes">은행 환전·송금 수수료와 환율 우대는 포함하지 않습니다. 실제 적용 환율은 금융기관에서 확인해 주세요.</p>
 </main>
-<script type="application/json" id="fx-data">{"rates": {"USD": 1337.2866127583109, "EUR": 1488.4, "JPY": 8.460663938153706, "GBP": 1780.8514202302042, "CHF": 1613.966601604858, "CAD": 955.511330808243, "AUD": 939.5278373942684, "NZD": 751.0723116516123, "SEK": 135.315241601891, "NOK": 144.06426946716354, "KRW": 1.0}, "fetched_at": "2026-10-30T07:14:28.193469+00:00"}</script>
+<script type="application/json" id="fx-data">{"rates": {"USD": 1337.2866127583109, "EUR": 1488.4, "JPY": 8.460663938153706, "GBP": 1780.8514202302042, "CHF": 1613.966601604858, "CAD": 955.511330808243, "AUD": 939.5278373942684, "NZD": 751.0723116516123, "SEK": 135.315241601891, "NOK": 144.06426946716354, "KRW": 1.0}, "fetched_at": "2026-10-30T09:00:02.192106+00:00"}</script>
 <script src="assets/exchange-calculator.js"></script>
 </body>
 </html>
