@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MDT Medtronic plc 주가·기술적 지표 | Stock Radar</title>
+<meta name="description" content="MDT(Medtronic plc) 최근 3개월 일봉 차트와 RSI·MACD·볼린저밴드·이동평균·거래량 지표, 신호 상태. 기준 2026-10-29.">
+<style>
+:root{--blue:#0052FF;--blue-tint:#EAF0FF;--ground:#F7F8FA;--card:#FFFFFF;--hair:#F0F1F3;
+--ink:#0A0B0D;--slate:#5B616E;--steel:#8A919E;--fog:#C3C7CF;--border:#E3E6EA;
+--gain:#05B169;--gain-tint:#E6F9EF;--loss:#DF1B41;--loss-tint:#FCE9EC;--amber:#F4A81E;--amber-tint:#FEF6E7}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--slate);font:400 14px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Hiragino Sans",Arial,sans-serif}
+.section-title{color:var(--ink);font-size:17px;font-weight:600;line-height:1.3;margin:12px 0 10px}
+.wrap{max-width:1200px;margin:0 auto;padding:24px 16px 40px}
+h1{color:var(--ink);font-size:22px;font-weight:600;line-height:1.3;letter-spacing:-0.01em;margin:0 0 4px}
+.meta{color:var(--steel);font-size:12px;font-weight:500;line-height:1.5;margin:0}
+.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0 24px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 1px 2px rgba(10,11,13,0.04);padding:16px}
+.card .label{color:var(--steel);font-size:12px;font-weight:500;line-height:1.5}
+.card .value{color:var(--ink);font-size:24px;font-weight:600;line-height:1.2;font-variant-numeric:tabular-nums}
+.table-card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 1px 2px rgba(10,11,13,0.04);overflow:hidden}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:980px}
+th{position:sticky;top:0;background:var(--ground);color:var(--slate);font-size:12px;font-weight:600;line-height:1.4;text-transform:uppercase;letter-spacing:0.02em;text-align:right;padding:10px 12px;white-space:nowrap;border-bottom:1px solid var(--border)}
+td{padding:10px 12px;border-bottom:1px solid var(--hair);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--ink)}
+tbody tr:nth-child(even) td{background:#FAFBFC}
+tbody tr:hover td{background:var(--blue-tint)}
+th.l,td.l{text-align:left}
+th.c,td.c{text-align:center}
+.sticky{position:sticky;left:0;z-index:1;background:var(--card)}
+th.sticky{background:var(--ground);z-index:2}
+.ticker{font-weight:600;color:var(--ink)}
+a.ticker{color:var(--blue);text-decoration:none}a.ticker:hover{text-decoration:underline}
+.picker{display:flex;align-items:center;gap:8px;margin:0 0 12px}
+.picker label{color:var(--slate);font-size:12px;font-weight:600}
+.picker select{min-height:40px;min-width:220px;max-width:100%;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--ink);font:inherit}
+.picker select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,82,255,0.12)}
+.name{display:block;color:var(--steel);font-size:12px;font-weight:500;max-width:180px;overflow:hidden;text-overflow:ellipsis}
+.up{color:var(--gain)}.down{color:var(--loss)}.muted{color:var(--fog)}
+.badge{display:inline-block;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600;line-height:1.2}
+.b-buy{background:var(--gain-tint);color:var(--gain)}
+.b-wait{background:var(--amber-tint);color:var(--amber)}
+.b-none{background:var(--hair);color:var(--slate)}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;background:var(--fog)}
+.dot.d-buy{background:var(--gain)}
+.dot.d-weak{background:transparent;box-shadow:inset 0 0 0 2px var(--gain)}
+.req{color:var(--blue)}
+.callout{background:var(--ground);border:1px solid var(--border);border-radius:12px;padding:12px 14px;font-size:12.5px;font-weight:500;color:var(--ink);display:flex;gap:8px;margin-top:24px}
+.notes{margin-top:16px;color:var(--slate);font-size:13px}
+.notes ul{margin:4px 0 0;padding-left:18px}
+@media (max-width:480px){.summary{gap:8px;margin:16px 0 20px}.card{padding:12px}.card .value{font-size:20px}
+.name{max-width:120px}th,td{padding:10px 8px}}
+
+.nav{background:var(--card);border-bottom:1px solid var(--border)}
+.nav-in{max-width:1200px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:8px}
+.brand{color:var(--ink);font-weight:600;font-size:17px;letter-spacing:-0.01em;text-decoration:none;margin-right:auto}
+.nav-links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-link{color:var(--slate);font-size:14px;font-weight:600;text-decoration:none;padding:6px 10px;border-radius:999px;white-space:nowrap;transition:background-color .15s ease,color .15s ease}
+.nav-link:hover{color:var(--blue)}
+.nav-link.active{color:var(--blue);background:var(--blue-tint)}
+
+.wrap{max-width:592px}
+.stock-nav{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.stock-nav a,.stock-nav span{padding:10px 8px;font-weight:600}
+.stock-nav a{color:var(--blue);text-decoration:none}
+.stock-nav [aria-disabled]{color:var(--steel)}
+.stock-nav-hint{margin:0 0 16px;color:var(--steel);font-size:12px}
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}
+.price{text-align:right}
+.price .value{color:var(--ink);font-size:24px;font-weight:600;line-height:1.2;font-variant-numeric:tabular-nums}
+.stack{display:grid;gap:14px}
+.card h2{color:var(--ink);font-size:17px;font-weight:600;line-height:1.3;margin:0 0 12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin:0}
+.grid div{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid var(--hair);padding:6px 0}
+.grid dt{color:var(--slate);font-size:13px}
+.grid dd{margin:0;color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+.signals{list-style:none;margin:0;padding:0}
+.signals li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--hair)}
+.signals li:last-child{border-bottom:0}
+.back{display:inline-block;margin-top:20px;color:var(--blue);text-decoration:none;font-weight:600}
+.back:hover{text-decoration:underline}
+[data-stock-history] svg:focus{outline:none}
+[data-stock-history] svg:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:4px}
+@media (max-width:480px){.grid{gap:0 12px}.grid dt,.grid dd{font-size:12.5px}}
+</style>
+<link rel="stylesheet" href="../assets/stock-history.css">
+</head>
+<body>
+<nav class="nav"><div class="nav-in"><a class="brand" href="../">Stock Radar</a><div class="nav-links"><a class="nav-link active" aria-current="true" href="../">지표 스캔</a><a class="nav-link" href="../dividend.html">배당 계산기</a></div></div></nav>
+<main class="wrap" data-stock-navigation>
+<nav class="stock-nav" aria-label="스캔 순서로 종목 이동"><a rel="prev" data-stock-prev href="PLD.html">← 이전 PLD</a><span>97 / 97</span><span aria-disabled="true">다음 →</span></nav><p class="stock-nav-hint">스캔 표 순서 · 왼쪽으로 밀면 이전, 오른쪽으로 밀면 다음 종목</p>
+<div class="stack">
+<div class="head">
+<div><h1>MDT</h1>
+<p class="meta">Medtronic plc · Health Care · 시총 100위 ($121.2B)</p>
+<p class="meta">기준 거래일 2026-10-29 (미국 동부)</p></div>
+<div class="price"><div class="value">$97.11</div>
+<div class="up">+2.46%</div><div><span class="dot d-none" role="img" aria-label="꺼짐" title="꺼짐"></span></div></div>
+</div>
+<section data-stock-history data-symbol="MDT" data-source-id="stock-history-data" aria-label="MDT 최근 3개월 주가">
+  <div class="history-heading"><h2>최근 3개월 주가</h2><span class="history-interval">일봉</span></div>
+  <p class="history-message" role="status">주가 데이터를 불러오는 중이에요.</p>
+  <noscript>차트를 보려면 JavaScript를 활성화해 주세요.</noscript>
+  <div class="history-content" hidden>
+    <p class="history-period"></p>
+    <div class="history-legend">
+      <button type="button" data-ma="5" aria-pressed="true"><i></i>MA5</button>
+      <button type="button" data-ma="20" aria-pressed="true"><i></i>MA20</button>
+      <span class="history-direction">상승 <b class="gain">↑</b> · 하락 <b class="loss">↓</b></span>
+    </div>
+    <div class="history-selection"><b class="history-date"></b><span>종가 <strong class="history-close"></strong></span></div>
+    <svg role="slider" tabindex="0" aria-label="주가 차트. 좌우 방향키로 날짜 선택" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0"></svg>
+    <div class="history-ohlc"><span>시가 <b data-field="open"></b></span><span>고가 <b data-field="high"></b></span><span>저가 <b data-field="low"></b></span><span>거래량 <b data-field="volume"></b></span></div>
+  </div>
+</section>
+<section class="card"><h2>지표</h2><dl class="grid"><div><dt>RSI(14)</dt><dd>–</dd></div><div><dt>거래량 배수(20)</dt><dd>–</dd></div><div><dt>MACD</dt><dd>–</dd></div><div><dt>시그널</dt><dd>–</dd></div><div><dt>히스토그램</dt><dd>–</dd></div><div><dt>SMA 5</dt><dd>95.21</dd></div><div><dt>SMA 20</dt><dd>–</dd></div><div><dt>SMA 50</dt><dd>–</dd></div><div><dt>SMA 200</dt><dd>–</dd></div><div><dt>볼린저 상단</dt><dd>–</dd></div><div><dt>볼린저 중단</dt><dd>–</dd></div><div><dt>볼린저 하단</dt><dd>–</dd></div></dl></section>
+<section class="card"><h2>신호 조건 (최근 3봉)</h2><ul class="signals"><li><span>골든크로스</span><span class="badge b-none">꺼짐</span></li><li><span><span class="req">RSI 반등</span> · 필수</span><span class="badge b-none">꺼짐</span></li><li><span><span class="req">MACD 상향</span> · 필수</span><span class="badge b-none">꺼짐</span></li><li><span>볼린저 복귀</span><span class="badge b-none">꺼짐</span></li><li><span><span class="req">거래량 급증</span> · 필수</span><span class="badge b-none">꺼짐</span></li></ul>
+<p class="meta">필수 조건이 모두 발생하면 신호입니다. 신호 기준은 <a href="../">스캔 페이지</a> 하단 참고.</p></section>
+</div>
+<div class="callout"><span>⚠️</span><span>지표 조건이 켜졌는지·꺼졌는지만 보여주며, 매매 판단이나 권유가 아닙니다. 데이터 지연·오류가 있을 수 있습니다.</span></div>
+<a class="back" href="../">← 전체 스캔 표</a>
+</main>
+
+<script type="application/json" id="stock-history-data">{"symbol": "MDT", "currency": "USD", "bars": [{"date": "2026-10-23", "open": 96.0999984741211, "high": 96.88999938964844, "low": 95.37999725341797, "close": 95.41000366210938, "volume": 6009000, "ma5": null, "ma20": null}, {"date": "2026-10-26", "open": 95.0, "high": 95.69999694824219, "low": 94.08999633789062, "close": 94.79000091552734, "volume": 8464500, "ma5": null, "ma20": null}, {"date": "2026-10-27", "open": 94.25, "high": 94.52999877929688, "low": 93.73999786376953, "close": 93.94999694824219, "volume": 5454200, "ma5": null, "ma20": null}, {"date": "2026-10-28", "open": 93.05999755859375, "high": 95.72000122070312, "low": 93.04000091552734, "close": 94.77999877929688, "volume": 9578300, "ma5": null, "ma20": null}, {"date": "2026-10-29", "open": 96.47000122070312, "high": 97.19999694824219, "low": 95.16999816894531, "close": 97.11000061035156, "volume": 9373500, "ma5": 95.20800018310547, "ma20": null}]}</script>
+<script src="../assets/stock-history.js"></script>
+<script src="../assets/stock-navigation.js"></script>
+</body>
+</html>
