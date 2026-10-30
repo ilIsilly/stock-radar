@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>환율 계산기 · Stock Radar</title>
+<meta name="description" content="G10 주요 통화와 원화 환율 계산기. 매일 18시 수집한 ECB 기준환율로 계산합니다.">
+<style>
+:root{--blue:#0052FF;--blue-tint:#EAF0FF;--ground:#F7F8FA;--card:#FFFFFF;--hair:#F0F1F3;
+--ink:#0A0B0D;--slate:#5B616E;--steel:#8A919E;--fog:#C3C7CF;--border:#E3E6EA;
+--gain:#05B169;--gain-tint:#E6F9EF;--loss:#DF1B41;--loss-tint:#FCE9EC;--amber:#F4A81E;--amber-tint:#FEF6E7}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--slate);font:400 14px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Hiragino Sans",Arial,sans-serif}
+.section-title{color:var(--ink);font-size:17px;font-weight:600;line-height:1.3;margin:12px 0 10px}
+.wrap{max-width:1200px;margin:0 auto;padding:24px 16px 40px}
+h1{color:var(--ink);font-size:22px;font-weight:600;line-height:1.3;letter-spacing:-0.01em;margin:0 0 4px}
+.meta{color:var(--steel);font-size:12px;font-weight:500;line-height:1.5;margin:0}
+.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0 24px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 1px 2px rgba(10,11,13,0.04);padding:16px}
+.card .label{color:var(--steel);font-size:12px;font-weight:500;line-height:1.5}
+.card .value{color:var(--ink);font-size:24px;font-weight:600;line-height:1.2;font-variant-numeric:tabular-nums}
+.table-card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 1px 2px rgba(10,11,13,0.04);overflow:hidden}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:980px}
+th{position:sticky;top:0;background:var(--ground);color:var(--slate);font-size:12px;font-weight:600;line-height:1.4;text-transform:uppercase;letter-spacing:0.02em;text-align:right;padding:10px 12px;white-space:nowrap;border-bottom:1px solid var(--border)}
+td{padding:10px 12px;border-bottom:1px solid var(--hair);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--ink)}
+tbody tr:nth-child(even) td{background:#FAFBFC}
+tbody tr:hover td{background:var(--blue-tint)}
+th.l,td.l{text-align:left}
+th.c,td.c{text-align:center}
+.sticky{position:sticky;left:0;z-index:1;background:var(--card)}
+th.sticky{background:var(--ground);z-index:2}
+.ticker{font-weight:600;color:var(--ink)}
+a.ticker{color:var(--blue);text-decoration:none}a.ticker:hover{text-decoration:underline}
+.picker{display:flex;align-items:center;gap:8px;margin:0 0 12px}
+.picker label{color:var(--slate);font-size:12px;font-weight:600}
+.picker select{min-height:40px;min-width:220px;max-width:100%;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--ink);font:inherit}
+.picker select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,82,255,0.12)}
+.name{display:block;color:var(--steel);font-size:12px;font-weight:500;max-width:180px;overflow:hidden;text-overflow:ellipsis}
+.up{color:var(--gain)}.down{color:var(--loss)}.muted{color:var(--fog)}
+.badge{display:inline-block;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600;line-height:1.2}
+.b-buy{background:var(--gain-tint);color:var(--gain)}
+.b-wait{background:var(--amber-tint);color:var(--amber)}
+.b-none{background:var(--hair);color:var(--slate)}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;background:var(--fog)}
+.dot.d-buy{background:var(--gain)}
+.dot.d-weak{background:transparent;box-shadow:inset 0 0 0 2px var(--gain)}
+.req{color:var(--blue)}
+.callout{background:var(--ground);border:1px solid var(--border);border-radius:12px;padding:12px 14px;font-size:12.5px;font-weight:500;color:var(--ink);display:flex;gap:8px;margin-top:24px}
+.notes{margin-top:16px;color:var(--slate);font-size:13px}
+.notes ul{margin:4px 0 0;padding-left:18px}
+@media (max-width:480px){.summary{gap:8px;margin:16px 0 20px}.card{padding:12px}.card .value{font-size:20px}
+.name{max-width:120px}th,td{padding:10px 8px}}
+
+.nav{background:var(--card);border-bottom:1px solid var(--border)}
+.nav-in{max-width:1200px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:8px}
+.brand{color:var(--ink);font-weight:600;font-size:17px;letter-spacing:-0.01em;text-decoration:none;margin-right:auto}
+.nav-links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-link{color:var(--slate);font-size:14px;font-weight:600;text-decoration:none;padding:6px 10px;border-radius:999px;white-space:nowrap;transition:background-color .15s ease,color .15s ease}
+.nav-link:hover{color:var(--blue)}
+.nav-link.active{color:var(--blue);background:var(--blue-tint)}
+
+.fx-wrap{max-width:1000px}.fx-kicker{color:var(--blue);font-size:11px;font-weight:700;letter-spacing:.12em;margin:0 0 8px}
+.fx-title{font-size:30px;letter-spacing:-.04em;margin-bottom:8px}.fx-intro{margin:0 0 22px}
+.fx-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(240px,1fr);gap:18px;align-items:start}
+.fx-calculator{padding:26px}.fx-label{display:block;font-size:12px;font-weight:600;color:var(--slate);margin:0 0 8px}
+.fx-amount{display:block;width:100%;font:inherit;font-size:34px;font-weight:600;line-height:1.3;color:var(--ink);border:0;border-bottom:1px solid var(--border);border-radius:0;background:transparent;padding:8px 0 14px;min-width:0}
+.fx-quick{display:flex;gap:8px;margin:12px 0 26px}.fx-quick button{background:var(--ground);border:1px solid var(--border);border-radius:6px;padding:6px 12px;color:var(--slate);cursor:pointer;font:inherit;font-size:12px}
+.fx-selectors{display:grid;grid-template-columns:minmax(0,1fr) 38px minmax(0,1fr);align-items:end;gap:8px}
+.fx-selectors label{min-width:0}.fx-selectors select{width:100%;min-width:0;height:46px;padding:8px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
+.fx-swap{height:46px;border:0;background:var(--blue-tint);border-radius:8px;font-size:23px;color:var(--blue);cursor:pointer}
+.fx-result{background:var(--blue-tint);border-radius:10px;padding:22px;margin-top:22px;color:var(--blue);overflow-wrap:anywhere}
+.fx-result small{display:block;font-size:12px;margin-bottom:5px}.fx-result output{font-size:32px;font-weight:650;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1.4}
+.fx-unit{font-size:12px;margin:8px 0 0}.fx-error{font-size:12px;color:var(--loss);min-height:19px;margin:6px 0 0}
+.fx-status{padding:22px}.fx-status h2{font-size:15px;margin:0 0 16px;color:var(--ink)}
+.fx-status dl{margin:0}.fx-status dt{font-size:12px;color:var(--steel);margin-top:14px}.fx-status dd{margin:3px 0 0;color:var(--ink);font-weight:600}
+.fx-status .fx-source-note{font-size:12px;line-height:1.7;border-top:1px solid var(--border);padding-top:16px;margin-top:18px}
+.fx-status a,.fx-notes a{color:var(--blue)}.fx-heading{margin:30px 0 12px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.fx-heading h2{font-size:17px;color:var(--ink);margin:0}.fx-heading span{font-size:12px;color:var(--steel)}
+.fx-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.fx-rate{background:var(--card);border:1px solid var(--border);border-radius:10px;text-align:left;padding:15px;cursor:pointer;color:var(--ink);font:inherit;min-width:0}
+.fx-rate:hover,.fx-rate[aria-pressed="true"]{border-color:var(--blue);background:#F5F8FF}.fx-code{font-size:15px;font-weight:650}.fx-name{display:block;font-size:11px;color:var(--steel);margin:2px 0 14px}
+.fx-price{display:block;font-size:17px;font-weight:650;font-variant-numeric:tabular-nums;letter-spacing:-.03em}.fx-basis{display:block;font-size:10px;color:var(--steel);margin-top:3px}
+.fx-notes{margin-top:22px;font-size:12px;color:var(--slate)}.fx-stale{padding:12px;background:var(--amber-tint);border-radius:8px;color:#7A4A00;margin-bottom:18px}
+.fx-wrap :is(button,select,input):focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+@media(max-width:760px){.fx-layout{grid-template-columns:1fr}.fx-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.fx-status dl{display:grid;grid-template-columns:1fr 1fr;gap:10px}.fx-status dt{margin-top:0}.fx-status .fx-source-note{margin-bottom:0}.fx-title{font-size:26px}.fx-calculator{padding:20px}}
+@media(max-width:380px){.fx-selectors{grid-template-columns:minmax(0,1fr) 32px minmax(0,1fr);gap:5px}.fx-selectors select{font-size:12px}.fx-result output{font-size:27px}}
+</style>
+
+</head>
+<body>
+<nav class="nav"><div class="nav-in"><a class="brand" href="./">Stock Radar</a><div class="nav-links"><a class="nav-link" href="./">지표 스캔</a><a class="nav-link" href="dividend.html">배당 계산기</a><a class="nav-link active" aria-current="true" href="exchange.html">환율 계산기</a></div></div></nav>
+<main class="wrap fx-wrap">
+<p class="fx-kicker">G10 · KRW</p><h1 class="fx-title">환율 계산기</h1>
+<p class="fx-intro">주요 10개 통화와 원화, 같은 기준환율로 간편하게 계산하세요.</p>
+<p id="fx-stale" class="fx-stale" hidden>수집 후 48시간이 지났습니다. 아래 기준일의 환율로 계산됩니다.</p>
+<div class="fx-layout"><section class="card fx-calculator" aria-label="환율 변환">
+<label class="fx-label" for="fx-amount">변환할 금액</label>
+<input id="fx-amount" class="fx-amount" type="text" inputmode="decimal" value="1,000" maxlength="22" autocomplete="off" aria-describedby="fx-error">
+<p id="fx-error" class="fx-error" role="status"></p>
+<div class="fx-quick"><button type="button" data-amount="100">100</button><button type="button" data-amount="1000">1,000</button><button type="button" data-amount="10000">10,000</button></div>
+<div class="fx-selectors"><label><span class="fx-label">보내는 통화</span><select id="fx-from"><option value="USD" selected>USD · 미국 달러</option><option value="EUR">EUR · 유로</option><option value="JPY">JPY · 일본 엔</option><option value="GBP">GBP · 영국 파운드</option><option value="CHF">CHF · 스위스 프랑</option><option value="CAD">CAD · 캐나다 달러</option><option value="AUD">AUD · 호주 달러</option><option value="NZD">NZD · 뉴질랜드 달러</option><option value="SEK">SEK · 스웨덴 크로나</option><option value="NOK">NOK · 노르웨이 크로네</option><option value="KRW">KRW · 대한민국 원</option></select></label>
+<button type="button" id="fx-swap" class="fx-swap" aria-label="보내는 통화와 받는 통화 바꾸기">⇄</button>
+<label><span class="fx-label">받는 통화</span><select id="fx-to"><option value="USD">USD · 미국 달러</option><option value="EUR">EUR · 유로</option><option value="JPY">JPY · 일본 엔</option><option value="GBP">GBP · 영국 파운드</option><option value="CHF">CHF · 스위스 프랑</option><option value="CAD">CAD · 캐나다 달러</option><option value="AUD">AUD · 호주 달러</option><option value="NZD">NZD · 뉴질랜드 달러</option><option value="SEK">SEK · 스웨덴 크로나</option><option value="NOK">NOK · 노르웨이 크로네</option><option value="KRW" selected>KRW · 대한민국 원</option></select></label></div>
+<div class="fx-result" aria-live="polite" aria-atomic="true"><small>환산 금액</small><output id="fx-result">—</output><p id="fx-unit" class="fx-unit"></p></div>
+<noscript><p>계산하려면 JavaScript를 활성화해 주세요. 아래 환율표는 그대로 확인할 수 있습니다.</p></noscript>
+</section><aside class="card fx-status"><h2>지금 계산에 쓰는 환율</h2><dl>
+<div><dt>환율 기준일</dt><dd>2026.10.29</dd></div>
+<div><dt>마지막 수집 · 한국 시간</dt><dd>2026.10.30 16:14</dd></div>
+<div><dt>수집 일정</dt><dd>매일 오후 6시 · KST</dd></div><div><dt>출처</dt><dd><a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html" target="_blank" rel="noopener noreferrer">유럽중앙은행 ECB ↗</a></dd></div></dl>
+<p class="fx-source-note">일일 참고 환율입니다. 한국 시간 오후 6시에는 보통 직전 영업일 기준환율을 가져옵니다. 주말·휴일에는 기준일과 환율이 같을 수 있습니다.</p>
+</aside></div><div class="fx-heading"><h2>원화 기준 환율</h2><span>통화를 누르면 계산기에 적용돼요 · 엔화는 100엔 기준</span></div>
+<div class="fx-grid"><button type="button" class="fx-rate" data-currency="USD" aria-pressed="false"><span class="fx-code">USD</span><span class="fx-name">미국 달러</span><span class="fx-price">1,337.29 원</span><span class="fx-basis">1 USD 기준</span></button><button type="button" class="fx-rate" data-currency="EUR" aria-pressed="false"><span class="fx-code">EUR</span><span class="fx-name">유로</span><span class="fx-price">1,488.40 원</span><span class="fx-basis">1 EUR 기준</span></button><button type="button" class="fx-rate" data-currency="JPY" aria-pressed="false"><span class="fx-code">JPY</span><span class="fx-name">일본 엔</span><span class="fx-price">846.07 원</span><span class="fx-basis">100 JPY 기준</span></button><button type="button" class="fx-rate" data-currency="GBP" aria-pressed="false"><span class="fx-code">GBP</span><span class="fx-name">영국 파운드</span><span class="fx-price">1,780.85 원</span><span class="fx-basis">1 GBP 기준</span></button><button type="button" class="fx-rate" data-currency="CHF" aria-pressed="false"><span class="fx-code">CHF</span><span class="fx-name">스위스 프랑</span><span class="fx-price">1,613.97 원</span><span class="fx-basis">1 CHF 기준</span></button><button type="button" class="fx-rate" data-currency="CAD" aria-pressed="false"><span class="fx-code">CAD</span><span class="fx-name">캐나다 달러</span><span class="fx-price">955.51 원</span><span class="fx-basis">1 CAD 기준</span></button><button type="button" class="fx-rate" data-currency="AUD" aria-pressed="false"><span class="fx-code">AUD</span><span class="fx-name">호주 달러</span><span class="fx-price">939.53 원</span><span class="fx-basis">1 AUD 기준</span></button><button type="button" class="fx-rate" data-currency="NZD" aria-pressed="false"><span class="fx-code">NZD</span><span class="fx-name">뉴질랜드 달러</span><span class="fx-price">751.07 원</span><span class="fx-basis">1 NZD 기준</span></button><button type="button" class="fx-rate" data-currency="SEK" aria-pressed="false"><span class="fx-code">SEK</span><span class="fx-name">스웨덴 크로나</span><span class="fx-price">135.32 원</span><span class="fx-basis">1 SEK 기준</span></button><button type="button" class="fx-rate" data-currency="NOK" aria-pressed="false"><span class="fx-code">NOK</span><span class="fx-name">노르웨이 크로네</span><span class="fx-price">144.06 원</span><span class="fx-basis">1 NOK 기준</span></button></div>
+<p class="fx-notes">은행 환전·송금 수수료와 환율 우대는 포함하지 않습니다. 실제 적용 환율은 금융기관에서 확인해 주세요.</p>
+</main>
+<script type="application/json" id="fx-data">{"rates": {"USD": 1337.2866127583109, "EUR": 1488.4, "JPY": 8.460663938153706, "GBP": 1780.8514202302042, "CHF": 1613.966601604858, "CAD": 955.511330808243, "AUD": 939.5278373942684, "NZD": 751.0723116516123, "SEK": 135.315241601891, "NOK": 144.06426946716354, "KRW": 1.0}, "fetched_at": "2026-10-30T07:14:28.193469+00:00"}</script>
+<script src="assets/exchange-calculator.js"></script>
+</body>
+</html>
